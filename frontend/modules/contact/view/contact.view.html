@@ -1,0 +1,27 @@
+<div class="flex">
+	<div class="contact">
+		<h2>Where we are:</h2>
+		<div id="map2"></div>
+	</div>
+	<div class="contact">
+		<h2>Contact:</h2>
+		<form id="contact_form" name="contact_form" class="form-contact">
+			<label class="name">
+				<input required ng-model="contact.inputName" name="inputName" type="text" id="cname" placeholder="Name" minlength="2" maxlength="100"/>
+				<span class="text-danger" ng-show="contact_form.inputName.$error.required && (contact_form.inputName.$dirty || contact_form.inputName.$touched)">Introduce your name</span>
+			</label>
+			<label class="email">
+				<input type="email" ng-model="contact.inputEmail" id="inputEmail" name="inputEmail" required placeholder="Email" maxlength="100"/>
+				<span class="text-danger" ng-show="contact_form.inputEmail.$error.required && (contact_form.inputEmail.$dirty || contact_form.inputEmail.$touched)">Introduce your email</span>
+				<span class="text-danger" ng-show="contact_form.inputEmail.$error.email">Write valid email</span>
+			</label>
+			<label class="message">
+				<textarea required ng-model="contact.inputMessage" name="inputMessage" rows="4" cols="50" id="inputMessage" placeholder="Message"></textarea>
+		       	<span class="text-danger" ng-show="contact_form.inputMessage.$error.required && (contact_form.inputMessage.$dirty || contact_form.inputMessage.$touched)">Introduce a message</span>
+			</label>
+			<input class="btn" type="submit" id="submitBtn" name="submit" value="Send"
+			ng-show="contact_form.inputName.$valid && contact_form.inputEmail.$valid && contact_form.inputMessage.$valid"
+			ng-click="SubmitContact()"/>
+		</form>
+	</div>
+</div>
