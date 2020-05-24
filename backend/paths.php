@@ -17,7 +17,7 @@
     define('IMG_PATH', SITE_PATH . 'view/img/');
 
     //MODEL
-    // define('MODEL_PATH', SITE_ROOT . 'model/');
+    define('MODEL_PATH', SITE_ROOT . 'model/');
     
     //MODULES
     define('MODULES_PATH', SITE_ROOT . 'modules/');

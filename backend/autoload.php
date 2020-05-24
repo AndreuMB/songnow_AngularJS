@@ -2,7 +2,6 @@
 require 'paths.php';
 include(UTILS . "utils.inc.php");
 include(UTILS . "common.inc.php");
-include(UTILS . "apis/apis.php");
 include(UTILS . "mail.inc.php");
 
 spl_autoload_register(null, false);
