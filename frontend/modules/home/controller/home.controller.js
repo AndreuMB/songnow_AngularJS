@@ -1,12 +1,9 @@
-songnow.controller('homeCtrl', function($scope,services,toastr, img){
-  // $scope.myInterval = 5000;
-  // $scope.noWrapSlides = false;
-  // $scope.active = 0;
+songnow.controller('homeCtrl', function($scope,services,toastr,img,categories, $window){
   var slides = $scope.slides = [];
   var currIndex = 0;
 
   $scope.addSlide = function(i) {
-    console.log(img[i])
+    // console.log(img[i])
     slides.push({
       image: '/songnow_AngularJS/frontend/assets/img/'+ img[i].rute,
       text: img[i].song_name,
@@ -15,44 +12,90 @@ songnow.controller('homeCtrl', function($scope,services,toastr, img){
 
   };
 
-  // $scope.randomize = function() {
-  //   var indexes = generateIndexesArray();
-  //   assignNewIndexesToSlides(indexes);
-  // };
-
   for (var i = 0; i < img.length; i++) { // n items
     $scope.addSlide(i);
   }
 
-  // Randomize logic below
+console.log(categories);
 
-  // function assignNewIndexesToSlides(indexes) {
-  //   for (var i = 0, l = slides.length; i < l; i++) {
-  //     slides[i].id = indexes.pop();
-  //   }
-  // }
+var cats = $scope.cats = [];
+currIndex = 0;
 
-  // function generateIndexesArray() {
-  //   var indexes = [];
-  //   for (var i = 0; i < currIndex; ++i) {
-  //     indexes[i] = i;
-  //   }
-  //   return shuffle(indexes);
-  // }
+limit=3
+start=0;
+end=false;
 
-  // http://stackoverflow.com/questions/962802#962890
-  // function shuffle(array) {
-  //   var tmp, current, top = array.length;
+// function categ(limit){
+//   console.log("limit=", limit)
+//   for (var i = 0; i < limit; i++) { // n items
+//     // console.log(categories[i])
+//     cats.push({
+//       image: '/songnow_AngularJS/frontend/assets/img/'+ categories[i].rute,
+//       text: categories[i].name,
+//       id: i
 
-  //   if (top) {
-  //     while (--top) {
-  //       current = Math.floor(Math.random() * (top + 1));
-  //       tmp = array[current];
-  //       array[current] = array[top];
-  //       array[top] = tmp;
-  //     }
-  //   }
+//     });
+//   }
+//   return cats;
+// }
+// var end=false;
+// myEl = angular.element( document.querySelector( '#categories' ) ); 
 
-  //   return array;
-  // }
+// $scope.cats = categ(limit);
+// angular.element($window).on('mousewheel', function() {
+//   console.log($window.scrollY);
+//   if(typeof last !== 'undefined' && end == false){
+//     if ($window.scrollY==last && last!=0){
+//       limit = limit + 3;
+//       if (limit>categories.length){
+//         myEl.empty();
+//         end=true;
+//         $scope.cats = categ(categories.length)
+//       }else{
+//         myEl.empty();
+//         $scope.cats = categ(limit)
+//       }
+//     }
+//     $scope.$apply();
+//   }
+//   last=$window.scrollY;
+// });
+// categories.slice(1, limit);
+
+function categ(start, limit){
+  // $scope.cats = categories.slice(start, limit);
+  // console.log($scope.cats);
+    for (var i = start; i < limit; i++) { // n items
+    // console.log(categories[i])
+    cats.push({
+      image: '/songnow_AngularJS/frontend/assets/img/'+ categories[i].rute,
+      text: categories[i].name,
+      id: i
+
+    });
+  }
+  return cats;
+
+}
+$scope.cats = categ(start, limit);
+
+angular.element($window).on('mousewheel', function() {
+  console.log($window.scrollY);
+  if(typeof last !== 'undefined' && end == false){
+    if ($window.scrollY==last && last!=0){
+      limit = limit + 3;
+      start = start + 3;
+      if (limit>categories.length){
+        end=true;
+        $scope.cats = categ(start, categories.length)
+      }else{
+        $scope.cats = categ(start,limit)
+      }
+    }
+    $scope.$apply();
+  }
+  last=$window.scrollY;
+});
+$scope.test="asdfafd";
+
 });

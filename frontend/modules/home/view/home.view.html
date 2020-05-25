@@ -41,6 +41,20 @@
     <div class="container">
         <h1 id="title_categ" data-tr="CATEGORIES">CATEGORIES</h1>
         <div class="row" id="categories">
+            <div ng-repeat="cat in cats">
+                <div class="col-4 col-12-medium">
+                    <section id="cat" class="box feature">
+                        <img ng-src="{{cat.image}}" class="categ_img"/>
+                        <div class="inner">
+                            <header>
+                                <h2>{{cat.text}}</h2>
+                            </header>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+
         </div>
     </div>
 </div>

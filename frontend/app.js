@@ -7,10 +7,10 @@ function ($routeProvider, $locationProvider) {
                 img: function (services) {
                     return services.get('home','carousel');
                 },
-                bbreeds: function (services) {
-                    return services.get('home','best_breed');
+                categories: function (services) {
+                    return services.post('home','categories', 1);
                 }
             }})
         .when("/contact", {templateUrl: "frontend/modules/contact/view/contact.view.html", controller: "contactCtrl"})
-        .otherwise("/", {templateUrl: "frontend/modules/home/view/home.view.html", controller: "homeCtrl"});
+        .otherwise("/home", {templateUrl: "frontend/modules/home/view/home.view.html", controller: "homeCtrl"});
     }]);

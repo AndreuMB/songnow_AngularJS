@@ -7,7 +7,6 @@
         }
 
         function categories(){
-            // echo json_encode("json");
             $page					=	intval($_POST['p_data']);
             $current_page			=	$page;
             $records_per_page		=	3; // records to show per page

@@ -53,7 +53,8 @@ class home_dao {
         return $db->listar($stmt);
     }
     public function select_data_categories($db,$arrArgument) {
-        $sql = "SELECT * FROM img WHERE type='categories' ORDER BY views DESC LIMIT $arrArgument OFFSET 0";
+        // $sql = "SELECT * FROM img WHERE type='categories' ORDER BY views DESC LIMIT $arrArgument OFFSET 0";
+        $sql = "SELECT * FROM img WHERE type='categories' ORDER BY views";
         $stmt = $db->ejecutar($sql);
         return $db->listar($stmt);
     }

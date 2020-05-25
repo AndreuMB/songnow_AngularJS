@@ -1799,9 +1799,9 @@ input::-moz-focus-inner {
 			padding: 0;
 		}
 
-			.box.feature .inner {
+			/* .box.feature .inner {
 				padding: 4em 2em 3em 2em;
-			}
+			} */
 
 			.box.feature h2 {
 				font-size: 1.35em;
@@ -3131,4 +3131,19 @@ margin: 0 0 0 2em;
 .carousel-inner img {
     width: 100%;
     height: auto;
+}
+#cat{
+	height: 350px;
+	width: 350px;
+	margin-bottom: 3em;
+	display:block;
+}
+#cat img{
+	height: 80%;
+	width: 100%;
+}
+
+#categories{
+	margin: 0 auto;
+
 }

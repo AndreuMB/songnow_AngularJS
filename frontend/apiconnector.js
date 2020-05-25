@@ -46,13 +46,13 @@ songnow.factory("services", ['$http','$q', function ($http, $q) {
             return promise;
         };
 
-        obj.post = function (module, functi, dada) {
+        obj.post = function (module, functi, p_data) {
           var defered=$q.defer();
           var promise=defered.promise;
           $http({
                 method: 'POST',
                 url: serviceBase + module + '&function=' + functi,
-                data: dada
+                data: {p_data}
             }).success(function(data, status, headers, config) {
       	       console.log(serviceBase + module + '&function=' + functi);
               //debugger;
