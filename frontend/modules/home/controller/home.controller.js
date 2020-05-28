@@ -96,6 +96,4 @@ angular.element($window).on('mousewheel', function() {
   }
   last=$window.scrollY;
 });
-$scope.test="asdfafd";
-
 });

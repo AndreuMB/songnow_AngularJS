@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="row gtr-200">
+        <div class="col-4 col-12-medium">
+            <div id="sidebar">
+                <section>
+                    <form name="f1" class="ff" id="filters">
+                    </form>
+                </section>
+            </div>
+        </div>
+        <div class="col-8 col-12-medium imp-medium">
+            <div id="content">
+                <article>
+                    <div class="container">
+                        <h1 id="title_categ" data-tr="Songs">SONGS</h1>
+                        <div class="songs_page" id="songs">
+                            <!-- <div class="map">
+                                <img src="/songnow_framework/view/img/map.png" alt="map" id=map_img style="width:100%;">
+                                <div class="centered" data-tr="See map"></div>
+                            </div> -->
+
+
+                        <table>
+                            <tr>
+                                <th>TITLE</th>
+                                <th>ARTIST</th>
+                                <th>ALBUM</th>
+                                <th>DURATION</th>
+                            </tr>
+
+                            <tr dir-paginate="song in songs|filter:search|itemsPerPage:3" id={{song.id}}>
+                                    <td>{{song.song_name}}</td>
+                                    <td>{{song.singer}}</td>
+                                    <td>{{song.album}}</td>
+                                    <td>{{song.duration}}</td>
+                            </tr>
+                        </table>
+
+                            <dir-pagination-controls direction-links="true" boundary-links="true" > </dir-pagination-controls>
+
+
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+    <div id="pagination"></div>
+    </div>
+    <div id="map"></div>
+</div>
