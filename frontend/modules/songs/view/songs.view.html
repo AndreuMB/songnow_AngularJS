@@ -4,6 +4,14 @@
             <div id="sidebar">
                 <section>
                     <form name="f1" class="ff" id="filters">
+                        <p>Categories</p>
+                        <div ng-repeat="category in categories" class="fff">
+                            <input type="checkbox" id="{{category.id}}" class="chk">{{category.name}}</br>
+                            <!-- <label>{{category.name}} <input type="checkbox" ng-model="leader"></label><br/> -->
+                            <!-- <label>{{category.name}} <input type="checkbox" ng-model="checkboxModel.value1"></label><br/> -->
+                            
+
+                        </div>
                     </form>
                 </section>
             </div>
@@ -12,6 +20,28 @@
             <div id="content">
                 <article>
                     <div class="container">
+
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h1>DETAILS</h1>
+                <div class="row gtr-200">
+                    <div class="col-4 col-12-medium">
+                        <div class="col-6"><a href="#" class="image fit"><img class="prod_img" src="frontend/assets/img/{{song.rute}}" alt="" /></a></div>
+                    </div>
+                    <div class="col-8 col-12-medium imp-medium">
+                        <h2>{{song.song_name}}</h2>
+                        <ul><li>{{song.singer}}</li>
+                        <li>{{song.album}}</li>
+                        <li>{{song.relase_date}}</li>
+                        <li>{{song.genre}}</li>
+                        <li>{{song.duration}}</li></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
                         <h1 id="title_categ" data-tr="Songs">SONGS</h1>
                         <div class="songs_page" id="songs">
                             <!-- <div class="map">
@@ -19,7 +49,10 @@
                                 <div class="centered" data-tr="See map"></div>
                             </div> -->
 
-
+                            <div class="form-group">
+                                <label >Search</label>
+                                <input type="text" ng-model="search" class="form-control" placeholder="Search">
+                            </div>
                         <table>
                             <tr>
                                 <th>TITLE</th>
@@ -27,8 +60,7 @@
                                 <th>ALBUM</th>
                                 <th>DURATION</th>
                             </tr>
-
-                            <tr dir-paginate="song in songs|filter:search|itemsPerPage:3" id={{song.id}}>
+                            <tr dir-paginate="song in songs|filter:search|itemsPerPage:3" id={{song.id}} ng-click="modal(song.id)">
                                     <td>{{song.song_name}}</td>
                                     <td>{{song.singer}}</td>
                                     <td>{{song.album}}</td>

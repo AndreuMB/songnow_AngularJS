@@ -15,7 +15,11 @@ function ($routeProvider, $locationProvider) {
             resolve: {
                 songs: function (services) {
                     return services.post('songs','songs');
+                },
+                categories: function (services){
+                    return services.post('songs','categories')
                 }
+                
         }})
         .when("/contact", {templateUrl: "frontend/modules/contact/view/contact.view.html", controller: "contactCtrl"})
         .otherwise("/home", {templateUrl: "frontend/modules/home/view/home.view.html", controller: "homeCtrl"});
