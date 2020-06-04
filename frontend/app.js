@@ -9,6 +9,9 @@ function ($routeProvider, $locationProvider) {
                 },
                 categories: function (services) {
                     return services.post('home','categories', 1);
+                },
+                songs: function (services) {
+                    return services.post('songs','songs');
                 }
             }})
         .when("/songs", {templateUrl: "frontend/modules/songs/view/songs.view.html", controller: "songsCtrl",

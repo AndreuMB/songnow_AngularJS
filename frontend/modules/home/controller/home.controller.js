@@ -1,12 +1,40 @@
-songnow.controller('homeCtrl', function($scope,services,toastr,img,categories, $window){
+function id_cat(){
+  acat=document.getElementsByClassName("categ_img");
+  // console.log(acat);
+  // if (scroll==true){
+  //   clength=acat.length + 3;
+  //   if(clength>categories.length){
+  //     clength=categories.length;
+  //   }
+  // }else{
+  //   clength=acat.length;
+  // }
+  // console.log(acat.length);
+  for(var i=0;i<acat.length;i++){
+    console.log(acat[i].id)
+    document.getElementById(acat[i].id).onclick = function press(id){
+      console.log(id.path[0].id);
+      localStorage.setItem("id_cat", id.path[0].id)
+      window.location.href = "#/songs";
+    }
+  }
+}
+songnow.controller('homeCtrl', function($scope,services,toastr,img,categories,$window,songs){
+
+
   var slides = $scope.slides = [];
   var currIndex = 0;
 
+  $scope.song_modal=function(id){
+    localStorage.setItem("id_song", id)
+    window.location.href = "#/songs";
+  }
   $scope.addSlide = function(i) {
     // console.log(img[i])
     slides.push({
       image: '/songnow_AngularJS/frontend/assets/img/'+ img[i].rute,
-      text: img[i].song_name,
+      text: songs[i].song_name,
+      ids : songs[i].id,
       id: currIndex++
     });
 
@@ -16,84 +44,57 @@ songnow.controller('homeCtrl', function($scope,services,toastr,img,categories, $
     $scope.addSlide(i);
   }
 
-console.log(categories);
+  console.log(categories);
 
-var cats = $scope.cats = [];
-currIndex = 0;
+  var cats = $scope.cats = [];
+  currIndex = 0;
 
-limit=3
-start=0;
-end=false;
+  limit=3
+  start=0;
+  end=false;
 
-// function categ(limit){
-//   console.log("limit=", limit)
-//   for (var i = 0; i < limit; i++) { // n items
-//     // console.log(categories[i])
-//     cats.push({
-//       image: '/songnow_AngularJS/frontend/assets/img/'+ categories[i].rute,
-//       text: categories[i].name,
-//       id: i
+  function categ(start, limit){
+    // $scope.cats = categories.slice(start, limit);
+    // console.log($scope.cats);
+      for (var i = start; i < limit; i++) { // n items
+      // console.log(categories[i])
+      cats.push({
+        image: '/songnow_AngularJS/frontend/assets/img/'+ categories[i].rute,
+        text: categories[i].name,
+        id: categories[i].id
 
-//     });
-//   }
-//   return cats;
-// }
-// var end=false;
-// myEl = angular.element( document.querySelector( '#categories' ) ); 
+      });
+    }
+    return cats;
 
-// $scope.cats = categ(limit);
-// angular.element($window).on('mousewheel', function() {
-//   console.log($window.scrollY);
-//   if(typeof last !== 'undefined' && end == false){
-//     if ($window.scrollY==last && last!=0){
-//       limit = limit + 3;
-//       if (limit>categories.length){
-//         myEl.empty();
-//         end=true;
-//         $scope.cats = categ(categories.length)
-//       }else{
-//         myEl.empty();
-//         $scope.cats = categ(limit)
-//       }
-//     }
-//     $scope.$apply();
-//   }
-//   last=$window.scrollY;
-// });
-// categories.slice(1, limit);
-
-function categ(start, limit){
-  // $scope.cats = categories.slice(start, limit);
-  // console.log($scope.cats);
-    for (var i = start; i < limit; i++) { // n items
-    // console.log(categories[i])
-    cats.push({
-      image: '/songnow_AngularJS/frontend/assets/img/'+ categories[i].rute,
-      text: categories[i].name,
-      id: i
-
-    });
   }
-  return cats;
+  console.log(songs);
+  $scope.songs=songs;
+  $scope.cats = categ(start, limit);
 
-}
-$scope.cats = categ(start, limit);
-
-angular.element($window).on('mousewheel', function() {
-  console.log($window.scrollY);
-  if(typeof last !== 'undefined' && end == false){
-    if ($window.scrollY==last && last!=0){
-      limit = limit + 3;
-      start = start + 3;
-      if (limit>categories.length){
-        end=true;
-        $scope.cats = categ(start, categories.length)
-      }else{
-        $scope.cats = categ(start,limit)
+  angular.element($window).on('mousewheel', function() {
+    // console.log($window.scrollY);
+    if(typeof last !== 'undefined' && end == false){
+      if ($window.scrollY==last && last!=0){
+        limit = limit + 3;
+        start = start + 3;
+        if (limit>categories.length){
+          end=true;
+          $scope.cats = categ(start, categories.length)
+        }else{
+          $scope.cats = categ(start,limit)
+        }
+        $scope.$apply();
+        id_cat();
       }
     }
-    $scope.$apply();
+    last=$window.scrollY;
+  });
+  
+  window.onload = function() {
+    // console.log(document.getElementsByClassName("categ_img")[0].id)
+    id_cat();
   }
-  last=$window.scrollY;
-});
+
+
 });

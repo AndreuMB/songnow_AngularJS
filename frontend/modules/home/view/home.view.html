@@ -22,7 +22,7 @@
 			<div>
 				<div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
 				  <div uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
-					<img ng-src="{{slide.image}}" style="margin:auto;">
+					<img ng-src="{{slide.image}}" style="margin:auto" id="{{slide.ids}}" ng-click="song_modal(slide.ids)">
 					<div class="carousel-caption">
 					  <p>{{slide.text}}</p>
 					</div>
@@ -36,15 +36,40 @@
 </div> -->
 
 
-
 <div id="features-wrapper">
     <div class="container">
+        <h1 id="title_categ" data-tr="TRENDING">TRENDING</h1>
+        <div class="form-group">
+            <label >Search</label>
+            <input type="text" ng-model="search" class="form-control" placeholder="Search">
+        </div>
+        <div class="row" id="categories">
+            <div dir-paginate="song in songs|filter:search|itemsPerPage:3" id={{song.id}}>
+                <div class="col-4 col-12-medium">
+                    <h2>{{song.song_name}}</h2>
+                    <section id="c_songs" class="box feature">
+                            <img ng-src="frontend/assets/img/{{song.rute}}" id="{{song.id}}" class="song_img" ng-click="song_modal(song.id)"/>
+                        <!-- <div class="inner">
+                            <header>
+                                <h2>{{song.song_name}}</h2>
+                            </header>
+                        </div> -->
+                    </section>
+                </div>            
+                <!-- <div id="c_songs">
+                    <h1>{{song.song_name}}</h1>
+                    <img ng-src="frontend/assets/img/{{song.rute}}" id="{{song.id}}" class="song_img"/>
+                </div> -->
+            </div>
+        </div>
         <h1 id="title_categ" data-tr="CATEGORIES">CATEGORIES</h1>
         <div class="row" id="categories">
             <div ng-repeat="cat in cats">
                 <div class="col-4 col-12-medium">
                     <section id="cat" class="box feature">
-                        <img ng-src="{{cat.image}}" class="categ_img"/>
+                        <!-- <a href="http://localhost/songnow_AngularJS/#/songs"> -->
+                            <img ng-src="{{cat.image}}" id="{{cat.id}}" class="categ_img"/>
+                        <!-- </a> -->
                         <div class="inner">
                             <header>
                                 <h2>{{cat.text}}</h2>
@@ -53,8 +78,9 @@
                     </section>
                 </div>
             </div>
-
+        </div>
 
         </div>
     </div>
 </div>
+

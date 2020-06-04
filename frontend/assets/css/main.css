@@ -3185,3 +3185,19 @@ margin: 0 0 0 2em;
 	text-decoration: none;
 	cursor: pointer;
   }
+
+  .song_img{
+	height:100%;
+  }
+
+  #c_songs{
+	width:300px;
+	height:300px;
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+  }
+  #img_details{
+	display: flex;
+	margin: auto;
+  }
