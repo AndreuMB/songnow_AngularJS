@@ -76,46 +76,50 @@ songnow.controller('songsCtrl', function($scope,services,toastr,songs,categories
         modal.style.display = "none";
     }
 
-
-    window.onload = function() {
-        var checkBox=[];
-        var checks=[];
-        var chk="";
-
-        for(var i=0;i<categories.length;i++){
-            checkBox[i]=document.getElementById(categories[i].id);
-        }
-        
-        for(var i=0;i<categories.length;i++){
-            console.log(checkBox[i]);
-            checkBox[i].onclick= function click(id) {
-                // console.log(id.path[0].attributes[1].nodeValue);
-                var idc=id.path[0].attributes[1].nodeValue;
-                chk=document.getElementById(idc);
-                if (chk.checked == true){
-
-                    var found = categories.find(function(element) { 
-                    return element.id === idc;
-                    }); 
-
-                    checks.push(found);
-                    $scope.songs=filter(songs,checks);
-                    $scope.$apply();
-
-                }else{
-                    for(var i=0;i<checks.length;i++){
-                        if(checks[i].id===idc){
-                            checks.splice(i, 1);
-                            $scope.songs=filter(songs,checks);
-                            $scope.$apply();
+    // if(document.getElementById(categories[0].id)==null){
+    //     console.log("times")
+    //     console.log(document.getElementById(categories[0].id));
+    // }else{
+        setTimeout(function(){
+            var checkBox=[];
+            var checks=[];
+            var chk="";
+            console.log("times")
+            console.log(document.getElementById(categories[0].id));
+            for(var i=0;i<categories.length;i++){
+                checkBox[i]=document.getElementById(categories[i].id);
+            }
+            
+            for(var i=0;i<categories.length;i++){
+                console.log(checkBox[i]);
+                checkBox[i].onclick= function click(id) {
+                    // console.log(id.path[0].attributes[1].nodeValue);
+                    var idc=id.path[0].attributes[1].nodeValue;
+                    chk=document.getElementById(idc);
+                    if (chk.checked == true){
+    
+                        var found = categories.find(function(element) { 
+                        return element.id === idc;
+                        }); 
+    
+                        checks.push(found);
+                        $scope.songs=filter(songs,checks);
+                        $scope.$apply();
+    
+                    }else{
+                        for(var i=0;i<checks.length;i++){
+                            if(checks[i].id===idc){
+                                checks.splice(i, 1);
+                                $scope.songs=filter(songs,checks);
+                                $scope.$apply();
+                            }
                         }
                     }
+                    console.log(checks);
                 }
-                console.log(checks);
             }
-        }
-    }
-
+           }, 30)
+    // }
 
 
 });

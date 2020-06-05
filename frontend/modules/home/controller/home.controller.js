@@ -74,6 +74,7 @@ songnow.controller('homeCtrl', function($scope,services,toastr,img,categories,$w
 
   angular.element($window).on('mousewheel', function() {
     // console.log($window.scrollY);
+    
     if(typeof last !== 'undefined' && end == false){
       if ($window.scrollY==last && last!=0){
         limit = limit + 3;
@@ -89,12 +90,13 @@ songnow.controller('homeCtrl', function($scope,services,toastr,img,categories,$w
       }
     }
     last=$window.scrollY;
+    // console.log("last=" + last + "end=" + end);
   });
   
-  window.onload = function() {
+  // window.onload = function() {
     // console.log(document.getElementsByClassName("categ_img")[0].id)
     id_cat();
-  }
+  // }
 
 
 });
