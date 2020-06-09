@@ -1,0 +1,35 @@
+<div class="container">
+    <div id="login" class="box container">
+        <div class="row">
+            <div class="col-12 col-12-medium">
+                <form method="post" id="formregister" name="formregister">
+                    <div class="register">
+                        <h1>Register</h1>
+                        
+                        <label for="username"><b>Username</b></label>
+                        <input required ng-model="register.username" name="username" type="text" placeholder="Enter Username" minlength="2" maxlength="100"/>
+                        <span class="text-danger" ng-show="formregister.username.$error.required && formregister.username.$touched">Introduce your name</span>
+                        <span class="text-danger" ng-show="found">This username is alredy taken</span>
+
+                        <label for="email"><b>Email</b></label>
+                        <input required ng-model="register.email" name="email" type="email" placeholder="Enter Email" minlength="2" maxlength="100"/>
+                        <span class="text-danger" ng-show="formregister.email.$error.required && formregister.email.$touched">Introduce your email</span>
+                        <span class="text-danger" ng-show="formregister.email.$error.email">Write valid email</span>
+
+                        <label for="psswd"><b>Password</b></label>
+                        <input required ng-model="register.password" name="password" type="password" placeholder="Enter Password" minlength="2" maxlength="100"/>
+                        <span class="text-danger" ng-show="formregister.password.$error.required && formregister.password.$touched">Introduce your password</span>
+
+                        <label for="psswd2"><b>Repeat Password</b></label>
+                        <input required ng-model="register.password2" name="password2" type="password" placeholder="Repeat Password" minlength="2" maxlength="100"/>
+                        <span class="text-danger" ng-show="formregister.password2.$error.required && formregister.password2.$touched">Introduce your password</span>
+                        <span class="text-danger" ng-show="IsMatch">Introduce the same password</span>
+                        <hr>
+                        <input type="button" class="registerbtn" ng-click="submitRegister()" value="Register"/>
+                    </div>
+                </form>
+                <p>Already have an account?<a href="#login">Log in</a>.</p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -25,7 +25,7 @@
                 $address = $arr['email'];
                 $subject = 'Activate account';
                 $ruta = '<a href="'.amigable('module=home', true).'">web</a>';
-                $link='<a href="'.amigable('module=login&function=activate&token='.$arr['token'].'', true, false).'">link</a>';
+                $link='<a href="http://localhost/songnow_AngularJS/#/activate/' . $arr['token'] . '">link</a>';
                 $html = "Hello ".$arr['username']." thanks for register.<br>Click this  " . $link . " for activate account.<br><br>Return to the " . $ruta;
             break;
 

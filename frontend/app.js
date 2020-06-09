@@ -24,6 +24,40 @@ function ($routeProvider, $locationProvider) {
                 }
                 
         }})
+        .when("/login", {templateUrl: "frontend/modules/login/view/login.view.html", controller: "loginCtrl",
+            resolve: {
+                users: function (services) {
+                    return services.post('login','data_user');
+                }
+            }
+        })
+        .when("/register", {templateUrl: "frontend/modules/login/view/register.view.html", controller: "loginCtrl",
+            resolve: {
+                    users: function (services) {
+                        return services.post('login','data_user');
+                    }
+                }
+        })
+        .when("/activate/:token", {templateUrl: "frontend/modules/login/view/activate.view.html", controller: "activateCtrl",
+            resolve: {
+                    activate: function (services, $route) {
+                        return services.post('login','activate', $route.current.params.token);
+                    }
+                }
+        })
+        .when("/rpsswd", {templateUrl: "frontend/modules/login/view/rpsswd.view.html", controller: "loginCtrl"})
+        .when("/urpsswd", {templateUrl: "frontend/modules/login/view/urpsswd.view.html", controller: "loginCtrl"})
         .when("/contact", {templateUrl: "frontend/modules/contact/view/contact.view.html", controller: "contactCtrl"})
-        .otherwise("/home", {templateUrl: "frontend/modules/home/view/home.view.html", controller: "homeCtrl"});
+        .otherwise("/home", {templateUrl: "frontend/modules/home/view/home.view.html", controller: "homeCtrl",
+        resolve: {
+                img: function (services) {
+                    return services.get('home','carousel');
+                },
+                categories: function (services) {
+                    return services.post('home','categories', 1);
+                },
+                songs: function (services) {
+                    return services.post('songs','songs');
+                }
+            }})
     }]);

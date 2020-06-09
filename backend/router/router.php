@@ -2,10 +2,11 @@
 require 'autoload.php';
 $_POST = json_decode(file_get_contents('php://input'), true);
 function error404(){
-    require_once(VIEW_PATH_INC . "header.php");
-    require_once(VIEW_PATH_INC . "menu.php");
-    require_once(VIEW_PATH_INC . "404.php");
-    require_once(VIEW_PATH_INC . "footer.html"); 
+    // require_once(VIEW_PATH_INC . "header.php");
+    // require_once(VIEW_PATH_INC . "menu.php");
+    // require_once(VIEW_PATH_INC . "404.php");
+    // require_once(VIEW_PATH_INC . "footer.html"); 
+    return "error";
 }
 
 function handlerRouter() {
@@ -38,14 +39,14 @@ function handlerModule($URI_module, $URI_function) {
                 $controllerClass = "controller_" . $URI_module;
                 $obj = new $controllerClass;
             } else {
-                error404();
+                echo json_encode(error404());
             }
             handlerfunction(((String) $module->name), $obj, $URI_function);
             break;
         }
     }
     if (!$exist) {
-        error404();
+        echo json_encode(error404());
     }
 }
 
@@ -62,7 +63,7 @@ function handlerfunction($module, $obj, $URI_function) {
     }
 
     if (!$exist) {
-        error404();
+        echo json_encode(error404());
     } else {
         call_user_func(array($obj, $event));
     }
