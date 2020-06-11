@@ -100,3 +100,10 @@ songnow.controller('homeCtrl', function($scope,services,toastr,img,categories,$w
 
 
 });
+songnow.controller('menuCtrl', function(loginService,$scope){
+  loginService.menu();
+  $scope.logoutf=function(){
+    localStorage.removeItem("token_data")
+    loginService.menu();
+  }
+})

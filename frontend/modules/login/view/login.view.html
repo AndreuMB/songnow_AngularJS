@@ -2,19 +2,23 @@
     <div id="login" class="box container">
         <div class="row">
             <div class="col-12 col-12-medium">
-                <form method="post" id="formlogin">
+                <form method="post" id="formlogin" name="formlogin">
                     <div class="login">
                         <h1>Login</h1>
                         <label for="username"><b>Username</b></label>
-                        <input type="text" placeholder="Enter Username" name="username" required>
+                        <input required ng-model="login.username" name="username" type="text" placeholder="Enter Username" minlength="2" maxlength="100"/>
+                        <span class="text-danger" ng-show="formlogin.username.$error.required && formlogin.username.$touched">Introduce your name</span>
+                        <span class="text-danger" ng-show="found">This username not exist</span>
+
                         <label for="psswd"><b>Password</b></label>
-                        <input type="password" placeholder="Enter Password" name="psswd" required>
+                        <input required ng-model="login.password" name="password" type="password" placeholder="Enter Password" minlength="2" maxlength="100"/>
+                        <span class="text-danger" ng-show="formlogin.password.$error.required && formlogin.password.$touched">Introduce your password</span>
                         <hr>
-                        <input type="submit" class="loginbtn" value="Login"/>
+                        <input type="button" class="loginbtn" ng-click="submitLogin()" value="Login"/>
                         <input type="button" class="loginbtn" id="logingmail" value="Login Gmail"/>
                         <input type="button" class="loginbtn" id="loginghub" value="Login GitHub"/>
                     </div>
-                    </form>
+                </form>
                 <span data-tr="Not have an account?">Not have an account?</span> <a id="register" href="#register">Register</a>.<br>
                 <span data-tr="Forget password?">Forget password?</span><a id="fpsswd" href="#urpsswd">Click here</a>
             </div>

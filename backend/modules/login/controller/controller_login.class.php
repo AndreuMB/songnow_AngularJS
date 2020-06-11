@@ -30,13 +30,13 @@
             echo json_encode(true);
         }
         function login(){
-            $user=loadModel(MODEL_LOGIN, "login_model", "login", $_POST['username']);
+            $user=loadModel(MODEL_LOGIN, "login_model", "login", $_POST['p_data']['username']);
             // echo json_encode($user);
 
-            if (!$user){
-                echo json_encode("the username not exists");
-            }else{
-                if (password_verify($_POST['psswd'],$user[0]['psswd'])) {
+            // if (!$user){
+            //     echo json_encode("the username not exists");
+            // }else{
+                if (password_verify($_POST['p_data']['psswd'],$user[0]['psswd'])) {
                     if ($user[0]['active']=="1"){
                         $token=encode_token($user[0]['idusers']);
                         $data = array(
@@ -50,7 +50,7 @@
                 }else{
                     echo json_encode("username or password incorrects");
                 }
-            }
+            // }
         }
 
         function login_a(){
@@ -60,21 +60,10 @@
         }
 
         function menu(){
-            if(isset($_SESSION['type'])){
-                $data = array(
-                    "username"=>$_SESSION['username'],
-                    "avatar"=>$_SESSION['avatar'],
-                    "type"=>$_SESSION['type']
-                );
-                echo json_encode($data);
-            }elseif(!empty($_POST['p_data'])){
-                $token=decode_token($_POST['p_data']);
-                $name=json_decode($token)->name;
-                $data=loadModel(MODEL_LOGIN, "login_model", "id_user", $name);
-                echo json_encode($data);
-            }else{
-                echo json_encode(null);
-            }
+            $token=decode_token($_POST['p_data']);
+            $name=json_decode($token)->name;
+            $data=loadModel(MODEL_LOGIN, "login_model", "id_user", $name);
+            echo json_encode($data);
         }
 
         function logout(){
