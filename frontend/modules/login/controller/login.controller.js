@@ -1,4 +1,46 @@
-songnow.controller('loginCtrl', function($scope,services,toastr,users,loginService){
+function cfirebase(provider,services,loginService){
+    firebase.auth().signInWithPopup(provider)
+    .then(function(result) {
+        console.log("result",result);
+        if (result.additionalUserInfo.providerId=="google.com"){
+            var data = {
+                user : result.user.displayName,
+                email : result.user.email,
+                img : result.user.photoURL,
+                id : result.user.uid
+            };
+        }else{
+            var data = {
+                user : result.additionalUserInfo.username,
+                email : result.user.email,
+                img : result.user.photoURL,
+                id : result.user.uid
+            };
+        }
+
+        console.log("data",data);
+        services.post('login', 'login_a', data).then(function (response) {
+            token=response.replace(/"/g, '');
+            console.log(token);
+            localStorage.setItem('token_data', token);
+            loginService.menu();
+            location.href="#home"
+        });
+    })
+    .catch(function(error) {
+        console.log('Error:', error);
+    });
+}
+
+songnow.controller('loginCtrl', function($scope,services,toastr,users,loginService,$rootScope){
+	if (!$rootScope.cont) {
+		$rootScope.cont=0;
+	}
+	if ($rootScope.cont === 0) {
+		loginService.initialize();
+		$rootScope.cont=1;
+	}
+
     console.log("login");
 
     $scope.register = {
@@ -38,7 +80,7 @@ songnow.controller('loginCtrl', function($scope,services,toastr,users,loginServi
                     toastr.success('El mensaje ha sido enviado correctamente', 'Mensaje enviado',{
                     closeButton: true
                 });
-                window.location.href = "http://localhost/songnow_AngularJS/#/login";
+                location.href = "#login";
             } else {
                     toastr.error('El mensaje no se ha enviado', 'Mensaje no enviado',{
                     closeButton: true
@@ -75,6 +117,19 @@ songnow.controller('loginCtrl', function($scope,services,toastr,users,loginServi
                 });
             }
         });
+    };
+
+    $scope.loginGmail = function () {
+        console.log("gmail");
+        provider = new firebase.auth.GoogleAuthProvider();
+        cfirebase(provider,services,loginService);
+    };
+
+    $scope.loginGitHub = function () {
+        console.log("github")
+        provider = new firebase.auth.GithubAuthProvider();
+        provider.addScope('email');
+        cfirebase(provider,services,loginService);
     };
 
 })

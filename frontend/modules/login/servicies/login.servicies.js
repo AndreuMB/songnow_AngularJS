@@ -1,11 +1,13 @@
 songnow.factory("loginService", ['$rootScope', 'services',
 function ($rootScope, services) {
 	var service = {};
-	service.menu = menu;
+    service.menu = menu;
+    service.initialize = initialize;
     return service;
 
     function menu() {
-    	var token = localStorage.getItem("token_data");
+        var token = localStorage.getItem("token_data");
+        console.log("token=" + token)
         if (token) {
             services.post('login', 'menu', token).then(function (response) {
                 console.log(response);
@@ -20,6 +22,7 @@ function ($rootScope, services) {
                     $rootScope.login = false;
                     $rootScope.profile = true;
                     $rootScope.logout = true;
+                    $rootScope.profile_img = response[0].avatar;
 	            }
             });
         } else {
@@ -28,5 +31,17 @@ function ($rootScope, services) {
             $rootScope.profile = false;
             $rootScope.logout = false;
         }
+    }
+    function initialize(){
+        var config = {
+            apiKey: apikeyfirebase,
+            authDomain: "slogin-98ab5.firebaseapp.com",
+            databaseURL: "https://slogin-98ab5.firebaseio.com",
+            projectId: "slogin-98ab5",
+            storageBucket: "",
+            messagingSenderId: "896016190332"
+          };
+         
+        firebase.initializeApp(config);
     }
 }]);
