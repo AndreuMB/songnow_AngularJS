@@ -2,14 +2,15 @@
     <div id="login" class="box container">
         <div class="row">
             <div class="col-12 col-12-medium">
-                <form method="post" id="formpsswd">
+                <form method="post" id="formurpsswd" name="formurpsswd">
                     <div class="login">
                         <h1>Login</h1>
                         <label for="username"><b>Username</b></label>
-                        <input type="text" placeholder="Enter username" name="username" id="username" required>
-                        <p class="error" id="e_username"></p>
+                        <input required ng-model="rpsswd.username" name="username" type="text" placeholder="Enter Username" minlength="2" maxlength="100"/>
+                        <span class="text-danger" ng-show="formurpsswd.username.$error.required && formurpsswd.username.$touched">Introduce your name</span>
+                        <span class="text-danger" ng-show="found">This username not exist or not is activated</span>
                         <hr>
-                        <input type="submit" class="psswdbtn" value="Send"/>
+                        <input type="button" class="psswdbtn" ng-disabled="formurpsswd.username.$invalid" ng-click="submitRpsswd()" value="Send"/>
                     </div>
                 </form>
             </div>

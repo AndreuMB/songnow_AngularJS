@@ -2,17 +2,19 @@
     <div id="login" class="box container">
         <div class="row">
             <div class="col-12 col-12-medium">
-                <form method="post" id="formcpsswd">
+                <form method="post" id="formcpsswd" name="formcpsswd">
                     <div class="register">
                         <h1>Change password</h1>
                         <label for="psswd"><b>Password</b></label>
-                        <input type="password" placeholder="Enter Password" name="psswd" id="psswd" required>
-                        <p class="error" id="e_psswd"></p>
+                        <input required ng-model="cpsswd.password" name="password" type="password" placeholder="Enter Password" minlength="2" maxlength="100"/>
+                        <span class="text-danger" ng-show="formcpsswd.password.$error.required && formcpsswd.password.$touched">Introduce your password</span>
+
                         <label for="psswd2"><b>Repeat Password</b></label>
-                        <input type="password" placeholder="Repeat Password" name="psswd2" id="psswd2" required>
-                        <p class="error" id="e_psswd2"></p>
+                        <input required ng-model="cpsswd.password2" name="password2" type="password" placeholder="Repeat Password" minlength="2" maxlength="100"/>
+                        <span class="text-danger" ng-show="formcpsswd.password2.$error.required && formcpsswd.password2.$touched">Introduce your password</span>
+                        <span class="text-danger" ng-show="IsMatch">Introduce the same password</span>
                         <hr>
-                        <input type="submit" class="psswdc" value="Change"/>
+                        <input type="button" class="psswdbtn" ng-disabled="formcpsswd.password.$invalid && formcpsswd.password2.$invalid" ng-click="submitCpsswd()" value="Change"/>
                     </div>
                 </form>
             </div>

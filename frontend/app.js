@@ -45,8 +45,25 @@ function ($routeProvider, $locationProvider) {
                     }
                 }
         })
-        .when("/rpsswd", {templateUrl: "frontend/modules/login/view/rpsswd.view.html", controller: "loginCtrl"})
-        .when("/urpsswd", {templateUrl: "frontend/modules/login/view/urpsswd.view.html", controller: "loginCtrl"})
+        .when("/urpsswd", {templateUrl: "frontend/modules/login/view/urpsswd.view.html", controller: "rpsswdCtrl",
+            resolve: {
+                users: function (services) {
+                    return services.post('login','data_user');
+                }
+            }
+        })
+        .when("/rpsswd/:token", {templateUrl: "frontend/modules/login/view/rpsswd.view.html", controller: "rpsswdCtrl",
+            resolve: {
+                users: function (services) {
+                    return services.post('login','data_user');
+                }
+            }
+            // resolve: {
+            //     rpsswd: function (services, $route) {
+            //         return services.post('login','activate', $route.current.params.token);
+            //     }
+            // }
+        })
         .when("/contact", {templateUrl: "frontend/modules/contact/view/contact.view.html", controller: "contactCtrl"})
         .otherwise("/home", {templateUrl: "frontend/modules/home/view/home.view.html", controller: "homeCtrl",
         resolve: {

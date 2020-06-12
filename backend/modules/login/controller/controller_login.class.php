@@ -104,10 +104,10 @@
         function epsswd(){
             // echo json_encode($_POST['p_data']);
             $data = array(
-                "username" => $_POST['p_data'][0]['idusers'],
-                "email" => $_POST['p_data'][0]['email'],
+                "username" => $_POST['p_data']['idusers'],
+                "email" => $_POST['p_data']['email'],
                 "type" => "psswd",
-                "token" => $_POST['p_data'][0]['token']
+                "token" => $_POST['p_data']['token']
             );
             email($data);
 
@@ -130,22 +130,8 @@
 
         }
         function rpsswd(){
-            if (!isset($_SESSION['tokenp'])){
-                $data = array(
-                    "idusers" => $_SESSION['idusers'],
-                    "psswd" => $_POST['psswd'],
-                );
-                $return="idusers";
-            }else{
-                $data = array(
-                    "token" => $_SESSION['tokenp'],
-                    "psswd" => $_POST['psswd'],
-                );
-                $return="token";
-            }
-
-            loadModel(MODEL_LOGIN, "login_model", "rpsswd", $data);
-            echo json_encode($return);
+            loadModel(MODEL_LOGIN, "login_model", "rpsswd", $_POST['p_data']);
+            echo json_encode(true);
         }
         function data_user(){
             $data=loadModel(MODEL_LOGIN, "login_model", "data_user");

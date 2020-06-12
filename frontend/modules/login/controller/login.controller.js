@@ -1,4 +1,4 @@
-songnow.controller('loginCtrl', function($scope,services,toastr,users, loginService){
+songnow.controller('loginCtrl', function($scope,services,toastr,users,loginService){
     console.log("login");
 
     $scope.register = {

@@ -24,7 +24,7 @@
             case 'register':
                 $address = $arr['email'];
                 $subject = 'Activate account';
-                $ruta = '<a href="'.amigable('module=home', true).'">web</a>';
+                $ruta = '<a href="http://localhost/songnow_AngularJS/#home">web</a>';
                 $link='<a href="http://localhost/songnow_AngularJS/#/activate/' . $arr['token'] . '">link</a>';
                 $html = "Hello ".$arr['username']." thanks for register.<br>Click this  " . $link . " for activate account.<br><br>Return to the " . $ruta;
             break;
@@ -32,8 +32,8 @@
             case 'psswd':
                 $address = $arr['email'];
                 $subject = 'Change psswd';
-                $ruta = '<a href="'.amigable('module=home', true).'">web</a>';
-                $link='<a href="'.amigable('module=login&function=cpsswd&token='.$arr['token'].'', true, false).'">link</a>';
+                $ruta = '<a href="http://localhost/songnow_AngularJS/#home">web</a>';
+                $link='<a href="http://localhost/songnow_AngularJS/#rpsswd/' . $arr['token'] . '">link</a>';
                 $html = "Hello ".$arr['username'].".<br>Click this  " . $link . " for change your password.<br><br>Return to the " . $ruta;
             break;
 
