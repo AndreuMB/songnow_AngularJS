@@ -54,22 +54,79 @@ songnow.controller('songsCtrl', function($scope,services,toastr,songs,categories
         console.log("local storage not set")
         $scope.songs=songs;
     }
+
+    token=localStorage.getItem("token_data");
+    services.post('login', 'menu', token).then(function (response) {
+        console.log(response[0]["idusers"]);
+        services.post('songs', 'favs', response[0]["idusers"]).then(function (response) {
+            console.log(response);
+            for (var i=0;i<response.length;i++){
+                element = document.getElementById(response[i].idsongs+"f");
+                if(element){
+                    element.classList.add("like");
+                }
+            }
+        })
+    })
         // $scope.songs=songs;
 
     var modal = document.getElementById("myModal");
 
+    $scope.likep=function(){
+        token=localStorage.getItem("token_data");
+        services.post('login', 'menu', token).then(function (response) {
+            console.log(response[0]["idusers"]);
+            services.post('songs', 'favs', response[0]["idusers"]).then(function (response) {
+                console.log(response);
+                for (var i=0;i<response.length;i++){
+                    element = document.getElementById(response[i].idsongs+"f");
+                    if(element){
+                        element.classList.add("like");
+                    }
+                }
+            })
+        })
+    }
     $scope.modal=function modal(id){
-        for(var i=0;i<songs.length;i++){
-        if (id==songs[i].id){
-            console.log(songs[i]);
-            $scope.song=songs[i];
-        }
-        var modal = document.getElementById("myModal");
+        console.log(event.target.classList[2]);
+        if (event.target.classList[2]!="favorite"){
+            for(var i=0;i<songs.length;i++){
+                if (id==songs[i].id){
+                    console.log(songs[i]);
+                    $scope.song=songs[i];
+                }
+                var modal = document.getElementById("myModal");
+    
+                modal.style.display = "block";
+            }
+        }else{
+            token=localStorage.getItem("token_data");
+            if(token){
+                services.post('login', 'menu', token).then(function (response) {
+                    console.log("user",response);
+                    var element = document.getElementById(id+"f");
+                    data=[response[0]["idusers"],id];
+                    console.log("user",data);
+                    if (element.classList[3]=="like"){
+                        services.post('songs', 'likes', data).then(function (response) {
+                            console.log(response);
+                        });
+                        element.classList.remove("like");
+                    }else{
+                        services.post('songs', 'likes', data).then(function (response) {
+                            console.log(response);
+                        });
+                        element.classList.add("like");
+                    }
+                });
+            }else{
+                location.href="#login"
+            }
 
-        modal.style.display = "block";
         }
 
     }
+    
 
     var span = document.getElementsByClassName("close")[0];
     span.onclick = function() {

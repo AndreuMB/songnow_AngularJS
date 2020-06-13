@@ -33,11 +33,13 @@
                     </div>
                     <div class="col-8 col-12-medium imp-medium">
                         <h2>{{song.song_name}}</h2>
-                        <ul><li>{{song.singer}}</li>
-                        <li>{{song.album}}</li>
-                        <li>{{song.relase_date}}</li>
-                        <li>{{song.genre}}</li>
-                        <li>{{song.duration}}</li></ul>
+                        <ul>
+                            <li>{{song.singer}}</li>
+                            <li>{{song.album}}</li>
+                            <li>{{song.relase_date}}</li>
+                            <li>{{song.genre}}</li>
+                            <li>{{song.duration}}</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -65,10 +67,11 @@
                                     <td>{{song.singer}}</td>
                                     <td>{{song.album}}</td>
                                     <td>{{song.duration}}</td>
+                                    <td><i id="{{song.id}}f" class="far fa-heart favorite"></i></td>
                             </tr>
                         </table>
 
-                            <dir-pagination-controls direction-links="true" boundary-links="true" > </dir-pagination-controls>
+                            <dir-pagination-controls direction-links="true" boundary-links="true" ng-click="likep()"> </dir-pagination-controls>
 
 
                         </div>

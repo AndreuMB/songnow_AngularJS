@@ -67,7 +67,7 @@ class songs_dao {
         }
     }
     public function select_data_fav($db,$arrArgument) {
-        $sql = "SELECT * FROM likes WHERE idusers='$arrArgument[0]'";
+        $sql = "SELECT * FROM likes WHERE idusers='$arrArgument'";
         $stmt = $db->ejecutar($sql);
         return $db->listar($stmt);
     }

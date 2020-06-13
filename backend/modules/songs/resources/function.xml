@@ -48,4 +48,8 @@
         <name>songs</name>
         <uri>songs</uri>
     </function>
+    <function>
+        <name>favs</name>
+        <uri>favs</uri>
+    </function>
 </functions>

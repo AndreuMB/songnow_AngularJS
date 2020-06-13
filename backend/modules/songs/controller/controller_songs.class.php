@@ -67,6 +67,10 @@
             $json = loadModel(MODEL_SONGS, "songs_model", "likes", $_POST['p_data']);
             echo json_encode($json);
         }
+        function favs(){
+            $json = loadModel(MODEL_SONGS, "songs_model", "fav", $_POST['p_data']);
+            echo json_encode($json);
+        }
 
     }
 ?>
