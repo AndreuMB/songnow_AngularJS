@@ -110,7 +110,13 @@ songnow.controller('loginCtrl', function($scope,services,toastr,users,loginServi
                 });
                 localStorage.setItem("token_data", response['token']);
                 loginService.menu();
-                location.href="#home"
+                cart=localStorage.getItem("buy");
+                if(cart){
+                    localStorage.removeItem("buy");
+                    location.href="#cart"
+                }else{
+                    location.href="#home"
+                }
             } else {
                     toastr.error(response, 'Error',{
                     closeButton: true

@@ -28,7 +28,7 @@ function ($routeProvider, $locationProvider) {
         resolve: {
             plans: function (services) {
                 return services.post('shop','products');
-            }            
+            }
         }})
         .when("/login", {templateUrl: "frontend/modules/login/view/login.view.html", controller: "loginCtrl",
             resolve: {
@@ -64,12 +64,16 @@ function ($routeProvider, $locationProvider) {
                     return services.post('login','data_user');
                 }
             }
-            // resolve: {
-            //     rpsswd: function (services, $route) {
-            //         return services.post('login','activate', $route.current.params.token);
-            //     }
-            // }
         })
+
+        .when("/cart", {templateUrl: "frontend/modules/cart/view/cart.view.html", controller: "cartCtrl",
+            resolve: {
+                plans: function (services) {
+                    return services.post('shop','products');
+                }
+            }
+        })
+
         .when("/contact", {templateUrl: "frontend/modules/contact/view/contact.view.html", controller: "contactCtrl"})
         .otherwise("/home", {templateUrl: "frontend/modules/home/view/home.view.html", controller: "homeCtrl",
         resolve: {

@@ -1,0 +1,31 @@
+<div class="container">
+    <div id="products">
+        <div ng-if="empty">
+            <article>
+                <h2>NOTHING IN THE CART</h2>
+                <p>Go to the <a href="#shop">store</a> to buy something</p>
+            </article>
+        </div>
+        <div ng-if="full">
+            <article>
+                <h2>CART</h2>
+                <table>
+                <tr>
+                <th>NAME</th>
+                <th>PRICE</th>
+                <th>UNITS</th>
+                <th>TOTAL</th>
+                </tr>
+                <tr ng-repeat="cart in carts" class="song" id="{{cart.id}}">
+                    <td>{{cart.name}}</td>
+                    <td>{{cart.price}}</td>
+                    <td  class="item_pr"><i class="fas fa-minus operator minus" id="{{cart.id}}" ng-click="minus(cart.id)"></i><input type="number" class="input_num" min="1" max="50" value="{{cart.item}}" readonly><i class="fas fa-plus operator plus" id="{{cart.id}}" ng-click="plus(cart.id)"></i></td>
+                    <td>{{cart.total}}</td>
+                    <td class="delete_pr_tb"><i class="fas fa-times delete_pr" id="{{cart.id}}" ng-click="delete_pr(cart.id)"></i></td>
+                </tr>
+                </table>
+                <h2 class="buy2" id="buy" ng-click="buy(cart.id)">BUY</h2>
+            </article>
+        </div>
+    </div>
+</div>
