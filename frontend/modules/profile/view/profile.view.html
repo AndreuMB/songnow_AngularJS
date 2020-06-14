@@ -1,0 +1,51 @@
+<div class="container">
+    <div id="profilep">
+        <div id="main-wrapper">
+            <div class="container">
+                <div ng-if="profile">
+                    <div class="row gtr-200">
+                        <div class="col-4 col-12-medium">
+                                <div id="sidebar">
+                                    <section class="widget thumbnails">
+                                        <div class="grid">
+                                            <div class="row gtr-50">
+                                                <div class="col-6"><a href="#" class="image fit"><img class="prod_img" ng-src="{{user[0].avatar}}" alt="" /></a></div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                        </div>
+                        <div class="col-8 col-12-medium imp-medium">
+                            <div id="content">
+                                <section class="last">
+                                    <h2> {{user[0].username}} </h2>
+                                    <ul><li>Email: {{user[0].email}}</li><li>Type: {{user[0].type}}</li></ul>
+                                </section>
+                                <h2 class="buy_b buy2" id="c_username" ng-click="c_username()">CHANGE USERNAME</h2>
+                                <h2 class="buy_b buy2" id="c_psswd" ng-click="c_psswd()">CHANGE PASSWORD</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div ng-if="c_user">
+                    <div class="row">
+                        <div class="col-12 col-12-medium">
+                            <form method="post" id="formcuser" name="formcuser">
+                                <div class="register">
+                                    <h1>Change username</h1>
+                                    <label for="username"><b>Username</b></label>
+                                    <input type="text" ng-model="cuser.username" placeholder="Enter Username" name="user" id="user" required>
+                                    <span class="text-danger" ng-show="formcuser.user.$error.required && formcuser.user.$touched">Introduce your name</span>
+                                    <hr>
+                                    <input type="button" id="change" ng-disabled="formcuser.user.$invalid" value="Change" ng-click="submitUser()" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>

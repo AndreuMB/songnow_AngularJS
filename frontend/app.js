@@ -44,6 +44,14 @@ function ($routeProvider, $locationProvider) {
                     }
                 }
         })
+        .when("/profile", {templateUrl: "frontend/modules/profile/view/profile.view.html", controller: "profileCtrl",
+            resolve: {
+                    user: function (services) {
+                        token=localStorage.getItem("token_data");
+                        return services.post('login','menu', token);
+                    }
+                }
+        })
         .when("/activate/:token", {templateUrl: "frontend/modules/login/view/activate.view.html", controller: "activateCtrl",
             resolve: {
                     activate: function (services, $route) {
