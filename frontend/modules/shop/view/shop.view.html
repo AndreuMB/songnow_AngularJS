@@ -1,0 +1,43 @@
+<div id="features-wrapper">
+    <div class="container">
+        <h1 id="title_categ" data-tr="Shop"></h1>
+         <!-- The Modal -->
+         <div id="myModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h1>DETAILS</h1>
+                <div class="row gtr-200">
+                    <div class="col-4 col-12-medium" id="img_details">
+                        <a href="#" class="image fit"><img class="prod_img" src="frontend/assets/img/{{song.img}}" alt="" /></a>
+                    </div>
+                    <div class="col-8 col-12-medium imp-medium">
+                        <h2>{{song.name}}</h2>
+                        <ul>
+                            <li>{{song.users}}</li>
+                            <li>{{song.price}}</li>
+                        </ul>
+                        <h2 class="buy_b buy" id="{{song.id}}" style="margin: 10px;" ng-click="buy(song.id)">BUY</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="products">
+            <div ng-repeat="plan in plans">
+                <div class="col-4 col-12-medium">
+                    <section class="box feature plans">
+                        <a class="image featured prod_img" id="{{plan.id}}" ng-click="read(plan.id)">
+                            <img ng-src="frontend/assets/img/{{plan.img}}" alt="{{plan.name}}"/>
+                        </a>
+                        <div class="inner prod_title">
+                            <h2>{{plan.name}}</h2>
+                            <header>
+                                <h2 class="buy_b buy" id="{{plan.id}}" style="margin: 10px;" ng-click="buy(plan.id)">BUY</h2>
+                            </header>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

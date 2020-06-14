@@ -24,6 +24,12 @@ function ($routeProvider, $locationProvider) {
                 }
                 
         }})
+        .when("/shop", {templateUrl: "frontend/modules/shop/view/shop.view.html", controller: "shopCtrl",
+        resolve: {
+            plans: function (services) {
+                return services.post('shop','products');
+            }            
+        }})
         .when("/login", {templateUrl: "frontend/modules/login/view/login.view.html", controller: "loginCtrl",
             resolve: {
                 users: function (services) {

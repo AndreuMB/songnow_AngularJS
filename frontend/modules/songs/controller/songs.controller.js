@@ -87,6 +87,7 @@ songnow.controller('songsCtrl', function($scope,services,toastr,songs,categories
             })
         })
     }
+    
     $scope.modal=function modal(id){
         console.log(event.target.classList[2]);
         if (event.target.classList[2]!="favorite"){

@@ -3201,3 +3201,11 @@ margin: 0 0 0 2em;
 	display: flex;
 	margin: auto;
   }
+.plans{
+	background: yellow;
+	padding: 1px !important;
+	margin: 3em;
+	height: 470px;
+    width: 350px;
+    display: block;
+}
