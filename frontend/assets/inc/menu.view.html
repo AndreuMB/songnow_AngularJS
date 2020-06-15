@@ -1,14 +1,14 @@
 <nav id="nav">
     <div id="menu" ng-controller="menuCtrl">
         <ul>
-            <li><a class="menu" href="#/home">Home</a></li>
-            <li><a class="menu" href="#/songs">Songs</a></li>
-            <li><a class="menu" href="#/shop">Shop</a></li>
+            <li><a class="menu" data-tr="Home" href="#/home">Home</a></li>
+            <li><a class="menu" data-tr="Songs" href="#/songs">Songs</a></li>
+            <li><a class="menu" data-tr="Shop" href="#/shop">Shop</a></li>
             <li><a class="menu fas fa-shopping-cart" href="#/cart"></a></li>
-            <li><a class="menu" href="#/contact">Contact</a></li>
-            <li><a class="menu" href="#/login" ng-show="login">Login</a></li>
-            <li><img ng-src="{{profile_img}}" ng-show="profile" alt="avatar" height="42" width="42"><a class="menu" href="#/profile" ng-show="profile">Profile</a></li>
-            <li><a class="menu" href="#/logout" ng-click="logoutf()" ng-show="logout">Logout</a></li>
+            <li><a class="menu" data-tr="Contact" href="#/contact">Contact</a></li>
+            <li><a class="menu" data-tr="Login" href="#/login" ng-show="login">Login</a></li>
+            <li><img ng-src="{{profile_img}}" ng-show="profile" alt="avatar" height="42" width="42"><a class="menu" href="#/profile" ng-show="profile">{{username}}</a></li>
+            <li><a class="menu" data-tr="Logout" href="#/logout" ng-click="logoutf()" ng-show="logout">Logout</a></li>
         </ul>
     </div>
 </nav>

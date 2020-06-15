@@ -15,6 +15,7 @@ function ($rootScope, services) {
                     console.log(response[0].avatar);
                     $rootScope.login = false;
                     $rootScope.profile = true;
+                    $rootScope.username=response[0].username;
                     $rootScope.logout = true;
                     $rootScope.profile_img = response[0].avatar;
 	            } else {

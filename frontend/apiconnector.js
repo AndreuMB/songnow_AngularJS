@@ -63,6 +63,38 @@ songnow.factory("services", ['$http','$q', function ($http, $q) {
           return promise;
         };
 
+        obj.translate = function (lang,allang){
+         var defered=$q.defer();
+         var promise=defered.promise;
+         $http({
+            method: 'POST',
+            dataType: 'JSON',
+            url: 'frontend/assets/langs/' + lang + '.json',
+        }).success(function(data, status, headers, config) {
+            console.log(data);
+            for (var i = 0; i < allang.length; i++) {
+               allang[i].innerHTML = data.hasOwnProperty(lang)
+               ? data[lang][allang[i].dataset.tr]
+               : allang[i].dataset.tr;
+            }
+          //debugger;
+           defered.resolve(data);
+        }).error(function(data, status, headers, config) {
+           defered.reject(data);
+        });
+         // url: '/songnow_framework/view/assets/langs/' + lang + '.json',
+         //     type: 'POST',
+         //     dataType: 'JSON',
+         //     success: function (data) {
+         //       console.log(data);
+         //       for (var i = 0; i < allang.length; i++) {
+         //         allang[i].innerHTML = data.hasOwnProperty(lang)
+         //         ? data[lang][allang[i].dataset.tr]
+         //         : allang[i].dataset.tr;
+         //       }
+         //     }
+        }
+
         obj.put = function (module, functi, dada) {
           var defered=$q.defer();
           var promise=defered.promise;

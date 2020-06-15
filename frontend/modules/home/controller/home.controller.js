@@ -107,3 +107,40 @@ songnow.controller('menuCtrl', function(loginService,$scope){
     loginService.menu();
   }
 })
+
+songnow.controller('footerCtrl', function($scope, services){
+  function lang(lang) {
+    // Save preferences
+    lang = lang || localStorage.getItem('app-lang') || 'english';
+    localStorage.setItem('app-lang', lang);
+  
+    var allang = document.querySelectorAll('[data-tr]');
+  
+    services.translate(lang, allang);
+
+    // $.ajax({
+    //     // url: '../../../view/langs/' + lang + '.json',
+    //     url: '/songnow_framework/view/assets/langs/' + lang + '.json',
+    //     type: 'POST',
+    //     dataType: 'JSON',
+    //     success: function (data) {
+    //       console.log(data);
+    //       for (var i = 0; i < allang.length; i++) {
+    //         allang[i].innerHTML = data.hasOwnProperty(lang)
+    //         ? data[lang][allang[i].dataset.tr]
+    //         : allang[i].dataset.tr;
+    //       }
+    //     }
+    // });
+  }
+  lang();
+  $scope.spanishl=function(){
+    lang('spanish');
+  }
+  $scope.englishl=function(){
+    lang('english');
+  }
+  $scope.valencianl=function(){
+    lang('valencian');
+  }
+})
