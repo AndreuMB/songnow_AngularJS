@@ -40,7 +40,7 @@ songnow.controller('loginCtrl', function($scope,services,toastr,users,loginServi
 		loginService.initialize();
 		$rootScope.cont=1;
 	}
-
+    console.log("users", users)
     console.log("login");
 
     $scope.register = {

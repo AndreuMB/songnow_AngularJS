@@ -1,5 +1,5 @@
 <div id="banner-wrapper">
-    <div id="banner" class="box container">
+    <div id="banner" class="box container" ng-if="loged">
         <div class="row">
             <div class="col-7 col-12-medium">
                 <h2 id="bannertitle" data-tr="Hi. This is Songnow.">Hi. This is Songnow.</h2>
@@ -7,8 +7,8 @@
             </div>
             <div class="col-5 col-12-medium">
                 <ul>
-                    <li><a id="login_button" class="button large icon solid fa-arrow-circle-right account" data-tr="Login">Login</a></li>
-                    <li><a id="register_button" class="button alt large icon solid fa-arrow-circle-right account" data-tr="Register">Register</a></li>
+                    <li><a id="login_button" class="button large icon solid fa-arrow-circle-right account" href="#login" data-tr="Login">Login</a></li>
+                    <li><a id="register_button" class="button alt large icon solid fa-arrow-circle-right account" href="#register" data-tr="Register">Register</a></li>
                 </ul>
             </div>
         </div>

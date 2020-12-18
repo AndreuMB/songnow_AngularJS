@@ -7,9 +7,9 @@
 			//SEND CLIENT
 			$arrArgument = array(
 				'type' => 'contact',
-				'inputName' => $_POST['name'],
-				'inputEmail' => $_POST['email'],
-				'inputMessage' => $_POST['message']
+				'inputName' => $_POST['p_data']['name'],
+				'inputEmail' => $_POST['p_data']['email'],
+				'inputMessage' => $_POST['p_data']['message']
 			);
 			try{
 				email($arrArgument);
@@ -21,9 +21,9 @@
 			//SEND ADMIN
 			$arrArgument = array(
 				'type' => 'admin',
-				'inputName' => $_POST['name'],
-				'inputEmail' => $_POST['email'],
-				'inputMessage' => $_POST['message']
+				'inputName' => $_POST['p_data']['name'],
+				'inputEmail' => $_POST['p_data']['email'],
+				'inputMessage' => $_POST['p_data']['message']
 			);
 			try{
 				email($arrArgument);

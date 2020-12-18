@@ -20,10 +20,16 @@ function id_cat(){
   }
 }
 songnow.controller('homeCtrl', function($scope,services,toastr,img,categories,$window,songs){
-
-
+  console.log("home");
   var slides = $scope.slides = [];
   var currIndex = 0;
+
+  token=localStorage.getItem("token_data")
+  if(token){
+    $scope.loged=false;
+  }else{
+    $scope.loged=true;
+  }
 
   $scope.song_modal=function(id){
     localStorage.setItem("id_song", id)

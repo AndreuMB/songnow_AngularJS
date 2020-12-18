@@ -63,5 +63,9 @@ songnow.controller('contactCtrl', function($scope,services,toastr){
                 });
             }
         });
+      //   services.post('profile', 'c_user', data).then(function (data) {
+      //     console.log(data);
+      //     location.href =  "#profile";
+      // })
     };
 });

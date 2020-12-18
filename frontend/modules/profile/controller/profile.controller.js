@@ -11,6 +11,7 @@ songnow.controller('profileCtrl', function($scope,services,toastr,user){
 
     $scope.c_psswd = function (){
         console.log(user[0].token);
+        localStorage.setItem("c_psswd", true);
         location.href =  "#rpsswd/" + user[0].token;
     }
 

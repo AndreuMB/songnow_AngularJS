@@ -48,6 +48,7 @@ class home_dao {
         return $db->ejecutar($sql);
     }
     public function select_data_carousel($db) {
+        // return "sql";
         $sql = "SELECT img.*, songs.* FROM img, songs WHERE type='carousel' AND songs.id_img=img.id";
         $stmt = $db->ejecutar($sql);
         return $db->listar($stmt);

@@ -26,33 +26,36 @@ function count(cart) {
 
 
 songnow.controller('cartCtrl', function($scope,services,toastr,plans){
+    console.log("plans", plans);
     $scope.empty=false;
     $scope.full=false;
     function view(){
         var cart = localStorage.getItem("cart");
         var cart = JSON.parse(cart);
+        var n_items = 0;
         console.log("cart", cart);
         if (!cart || cart.length==0){
             $scope.empty=true;
+            $scope.full=false;
         }else{
             $scope.full=true;
             var times = count(cart);
             var cart_data =[];
             for(var i = 0;plans.length > i;i++){
-                // console.log(times);
                 for(var x = 0;times.length > x;x++){
                     if (times[x].split(":",1)==plans[i].id){
-                        // console.log(times[x].split(":",1) + " == " + plans[i].id);
+                        console.log(times[x].split(":",1) + " == " + plans[i].id);
                         item=times[x].split(":",2);
                         total=plans[i].price*item[1];
-                        console.log(plans[i].id);
-                        cart_data[i]={
+
+                        cart_data[n_items]={
                             id : plans[i].id,
                             name : plans[i].name,
                             price : plans[i].price,
                             item : item[1],
                             total : total
                         }
+                        n_items++;
                         console.log("cart_data",cart_data);
                         $scope.carts=cart_data;
                     }

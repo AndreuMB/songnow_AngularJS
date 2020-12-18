@@ -46,7 +46,13 @@ songnow.controller('rpsswdCtrl', function($scope,services,toastr, users, $route)
             toastr.success('You change your password successfully', 'Success',{
                 closeButton: true
             });
-            location.href="#login"
+            profile_psswd=localStorage.getItem("c_psswd");
+            if(profile_psswd){
+                localStorage.removeItem("c_psswd");
+                location.href="#profile"
+            }else{
+                location.href="#login"
+            }
         })
     };
 })

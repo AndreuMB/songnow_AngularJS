@@ -3,10 +3,11 @@
         
         $html = '';
         $subject = '';
-        $body = '';
         $ruta = '';
         $return = '';
         
+        // return $arr;
+
         switch ($arr['type']) {
             case 'contact':
                 $address = $arr['inputEmail'];

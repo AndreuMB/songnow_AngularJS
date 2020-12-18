@@ -12,6 +12,8 @@
                 throw new Exception();
             }
 
+            // return "sql";
+
             $obj = $modelClass::getInstance();
 
             // return $obj;
@@ -24,7 +26,7 @@
                 }
                 //return $obj->$function($arrArgument);
                 return call_user_func(array($obj, $function),$arrArgument);
-            }   
+            }
 
         } else {
             throw new Exception();

@@ -15,7 +15,7 @@
         }
         
         private function setConexion() {
-            $conf = Conf::getInstance();
+            $conf = conf::getInstance(); // error here
             $this->server = $conf->getHostDB();
             $this->database = $conf->getDB();
             $this->user = $conf->getUserDB();

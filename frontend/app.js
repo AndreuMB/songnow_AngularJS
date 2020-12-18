@@ -39,10 +39,10 @@ function ($routeProvider, $locationProvider) {
         })
         .when("/register", {templateUrl: "frontend/modules/login/view/register.view.html", controller: "loginCtrl",
             resolve: {
-                    users: function (services) {
-                        return services.post('login','data_user');
-                    }
+                users: function (services) {
+                    return services.post('login','data_user');
                 }
+            }
         })
         .when("/profile", {templateUrl: "frontend/modules/profile/view/profile.view.html", controller: "profileCtrl",
             resolve: {

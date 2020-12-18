@@ -10,6 +10,7 @@ class home_model {
     public static function getInstance() {
         if (!(self::$_instance instanceof self)){
             self::$_instance = new self();
+            // return "here";
         }
         return self::$_instance;
     }
