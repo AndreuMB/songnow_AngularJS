@@ -142,22 +142,20 @@ songnow.controller('songsCtrl', function($scope,services,toastr,songs,categories
             var checkBox=[];
             var checks=[];
             var chk="";
-            console.log("times")
+            console.log("times");
             console.log(document.getElementById(categories[0].id));
             for(var i=0;i<categories.length;i++){
                 checkBox[i]=document.getElementById(categories[i].id);
             }
-            
+
             for(var i=0;i<categories.length;i++){
                 console.log(checkBox[i]);
-                checkBox[i].onclick= function click(id) {
-                    // console.log(id.path[0].attributes[1].nodeValue);
-                    var idc=id.path[0].attributes[1].nodeValue;
-                    chk=document.getElementById(idc);
+                checkBox[i].onclick=function (event){
+                    var id=event.target.id;
+                    chk=document.getElementById(id);
                     if (chk.checked == true){
-    
                         var found = categories.find(function(element) { 
-                        return element.id === idc;
+                        return element.id === id;
                         }); 
     
                         checks.push(found);
@@ -166,7 +164,7 @@ songnow.controller('songsCtrl', function($scope,services,toastr,songs,categories
     
                     }else{
                         for(var i=0;i<checks.length;i++){
-                            if(checks[i].id===idc){
+                            if(checks[i].id===id){
                                 checks.splice(i, 1);
                                 $scope.songs=filter(songs,checks);
                                 $scope.$apply();
